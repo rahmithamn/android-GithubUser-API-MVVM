@@ -8,7 +8,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.item_row_profile.view.*
 
-class UserAdapter(private val listHero: ArrayList<User>): RecyclerView.Adapter<UserAdapter.ListViewHolder>() {
+class UserAdapter(private val listUser: ArrayList<User>): RecyclerView.Adapter<UserAdapter.ListViewHolder>() {
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(user: User) {
             with(itemView){
@@ -16,8 +16,8 @@ class UserAdapter(private val listHero: ArrayList<User>): RecyclerView.Adapter<U
                     .load(user.photo)
                     .apply(RequestOptions().override(55, 55))
                     .into(img_item_photo)
-                tv_item_name.text = user.name
-
+                item_name.text = user.name
+                item_username.text = user.username
             }
         }
     }
@@ -27,12 +27,10 @@ class UserAdapter(private val listHero: ArrayList<User>): RecyclerView.Adapter<U
         return ListViewHolder(view)
     }
 
-    override fun getItemCount(): Int {
-        TODO("Not yet implemented")
-    }
+    override fun getItemCount(): Int = listUser.size
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        holder.bind(listHero[position])
+        holder.bind(listUser[position])
     }
 
 
