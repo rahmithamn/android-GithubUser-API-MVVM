@@ -15,7 +15,9 @@ import com.loopj.android.http.AsyncHttpResponseHandler
 import cz.msebera.android.httpclient.Header
 import kotlinx.android.synthetic.main.fragment_detail_user.*
 import kotlinx.android.synthetic.main.item_row_profile.*
+import okhttp3.*
 import org.json.JSONObject
+import java.io.IOException
 
 
 /**
@@ -90,5 +92,25 @@ class DetailUserFragment : Fragment() {
         list.addAll(getListUser())
         showRecyclerList()
 
+        fetchJSON()
+    }
+    fun fetchJSON(){
+        println("print JSON")
+
+        val url = "https://api.github.com/users/sidiqpermana/followers"
+        val request = Request.Builder().url(url).build()
+        val client = OkHttpClient()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                println("failed to execute process")
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                val body = response?.body?.string()
+                println(body)
+            }
+
+        })
     }
 }

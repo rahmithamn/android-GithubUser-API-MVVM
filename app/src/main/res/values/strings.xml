@@ -8,6 +8,8 @@
     <string name="username">Username</string>
     <string name="name">Name</string>
     <string name="search_hint">Search for user</string>
+    <string name="menu_setting">Setting</string>
+    <string name="search_username">Search Username...</string>
 
     <string-array name="data_name">
         <item>Ahmad Dahlan</item>
